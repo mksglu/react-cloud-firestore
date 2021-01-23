@@ -50,7 +50,8 @@ export function _editTodo(todoId, newTodo) {
   return async (dispatch, getState) => {
     dispatch(showLoading());
     await editTodo(todoId, newTodo);
-    const userId = getState().user.id;
+    const userId = getState().user.userId;
+    console.log("edit userid",userId);
     dispatch({
       type: EDIT_TODO,
       payload: { id: todoId, todo: newTodo, userId },

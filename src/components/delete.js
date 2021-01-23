@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { _deleteTodo } from "../actions";
 
 const Delete = styled.span`
@@ -12,10 +12,15 @@ const Delete = styled.span`
   width: 10px;
 `;
 const DeleteComponent = ({ todoId, children }) => {
+  const loading = useSelector((state) => {
+    return state.loadingBar.default;
+  });
   const dispatch = useDispatch();
   const handleClick = (event) => {
     event.preventDefault();
-    dispatch(_deleteTodo(todoId));
+    if(!loading){
+      dispatch(_deleteTodo(todoId));
+    }
   };
   return <Delete onClick={handleClick}>{children}</Delete>;
 };

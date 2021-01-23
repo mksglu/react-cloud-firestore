@@ -7,6 +7,7 @@ function TodoPage(props) {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
   React.useEffect(() => {
+    console.log("todo",props.user)
     dispatch(_getTodos());
   }, [dispatch, props.user.userId]);
 
