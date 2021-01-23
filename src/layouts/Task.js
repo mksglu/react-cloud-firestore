@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { _editTodo } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
 
-const Todo = styled.span`
+const TodoElement = styled.span`
   background: ${(props) => (props.primary ? "palevioletred" : "white")};
   color: ${(props) => (props.primary ? "white" : "black")};
   font-size: 2em;
 `;
-const Input = styled.input`
+const InputEditElement = styled.input`
   background: papayawhip;
   border: none;
   border-radius: 3px;
@@ -16,9 +16,9 @@ const Input = styled.input`
   margin-top: 5px;
   padding-top: 5px;
 `;
-const Form = styled.form``;
+const FormElement = styled.form``;
 
-const TodoComponent = ({ todoId, children }) => {
+const Task = ({ todoId, children }) => {
   const loading = useSelector((state) => {
     return state.loadingBar.default;
   });
@@ -38,6 +38,15 @@ const TodoComponent = ({ todoId, children }) => {
     setInputVisible(false);
     dispatch(_editTodo(todoId, text));
   };
+  const handleClick = (event) => {
+    event.preventDefault();
+    if (!loading) {
+      setInputVisible(true);
+    }
+  };
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
   React.useEffect(() => {
     if (inputVisible) {
       document.addEventListener("mousedown", onClickOutSide);
@@ -49,26 +58,18 @@ const TodoComponent = ({ todoId, children }) => {
   return (
     <React.Fragment>
       {inputVisible ? (
-        <Form onSubmit={handleSubmit}>
-          <Input
+        <FormElement onSubmit={handleSubmit}>
+          <InputEditElement
             ref={inputRef}
             value={text}
-            onChange={(event) => {
-              setText(event.target.value);
-            }}
+            onChange={handleChange}
           />
-        </Form>
+        </FormElement>
       ) : (
-        <Todo
-          onClick={() => {
-            !loading && setInputVisible(true);
-          }}
-        >
-          {children}
-        </Todo>
+        <TodoElement onClick={handleClick}>{children}</TodoElement>
       )}
     </React.Fragment>
   );
 };
 
-export default React.memo(TodoComponent);
+export default React.memo(Task);

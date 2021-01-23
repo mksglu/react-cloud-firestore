@@ -1,26 +1,18 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { _signInAnonymous } from "../actions";
 import { Input, Button } from "../components";
 import { useForm } from "react-hook-form";
 
-const Form = styled.form`
+const FormElement = styled.form`
   display: flex;
   flex-direction: column;
   width: 300px;
   gap: 10px;
 `;
-function SignIn() {
-  const dispatch = useDispatch();
+const SignIn = ({ onSubmit }) => {
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = (data) => {
-    if (data) {
-      dispatch(_signInAnonymous(data));
-    }
-  };
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <FormElement onSubmit={handleSubmit(onSubmit)}>
       <Input
         login
         register={register({ required: true })}
@@ -42,8 +34,8 @@ function SignIn() {
         placeholder="lastname"
       ></Input>
       <Button type="submit">Sign In</Button>
-    </Form>
+    </FormElement>
   );
-}
+};
 
-export default SignIn;
+export default React.memo(SignIn);

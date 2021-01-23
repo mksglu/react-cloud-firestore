@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const Input = styled.input`
+const InputElement = styled.input`
   font-size: ${(props) => (props.login ? "20px" : "40px")};
   padding: ${(props) => (props.login ? "20px" : "10px")};
   background: papayawhip;
@@ -12,12 +12,7 @@ const Input = styled.input`
   }
 `;
 const InputComponent = (props) => {
-  return (
-    <Input
-      ref={props.register}
-      {...props}
-    />
-  );
+  return <InputElement ref={props.register} {...props} />;
 };
 
 InputComponent.defaultProps = {

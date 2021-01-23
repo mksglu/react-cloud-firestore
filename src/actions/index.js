@@ -51,7 +51,6 @@ export function _editTodo(todoId, newTodo) {
     dispatch(showLoading());
     await editTodo(todoId, newTodo);
     const userId = getState().user.userId;
-    console.log("edit userid",userId);
     dispatch({
       type: EDIT_TODO,
       payload: { id: todoId, todo: newTodo, userId },

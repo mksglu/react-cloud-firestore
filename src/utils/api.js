@@ -93,16 +93,13 @@ export async function signInAnonymous(userData) {
  */
 export async function getTodos() {
   const currentUserId = firebase.auth().currentUser.uid;
-  console.log(currentUserId);
   const { docs } = await db
     .collection(firebaseConfig.collectionNames.todos)
     .where(USER_ID, "==", currentUserId)
     .get();
-  // console.log("docs",docs)
   return docs.map((doc) => {
     return { id: doc.id, ...doc.data() };
   });
-  // console.log("getTodos", getTodos);
 }
 
 /**

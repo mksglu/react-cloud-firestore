@@ -2,12 +2,12 @@ import { BrowserRouter as Router } from "react-router-dom";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { handleAuthentication } from "./actions/index";
-import PrivateRoute from "./hooks/PrivateRoute";
-import PublicRoute from "./hooks/PublicRoute";
+import PrivateRoute from "./routes/PrivateRoute";
+import PublicRoute from "./routes/PublicRoute";
 import LoadingBar from "react-redux-loading";
 
 const Todo = React.lazy(() => import("./pages/Todo"));
-const SignIn = React.lazy(() => import("./pages/Login"));
+const SignIn = React.lazy(() => import("./pages/SignIn"));
 
 function App() {
   const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Input } from "./";
+import { Input } from "../components";
 import { useDispatch } from "react-redux";
 import { _createTodo } from "../actions";
 
