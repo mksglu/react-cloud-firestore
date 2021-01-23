@@ -1,4 +1,4 @@
-# React and Google CloudStore ToDo Application
+# React and Google Cloud Firestore ToDo Application
 
 A basic todo application does create a new task and then you can delete or remove it from the created list. Application is created basically with React and Redux. For the database, we chose Google Cloud Firestore, and also authentication method entirely works with anonymous by Firebase, Google. From the beginning of the challenge, we care about is architecture and this way we provided a clear structure and store so when about manage to easy side effects through Hooks, Styled Component and Redux Thunk.
 
