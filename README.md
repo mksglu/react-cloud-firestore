@@ -1,6 +1,6 @@
 # React and Google CloudStore ToDo Application
 
-A basic ToDo application does create a new task and then you can delete or remove it from the list. That application is created used with React, Redux, and Cloud Firestore with Anonymous Authentication for the challenge. From the beginning of the challenge, we care about is architecture, and this way we caught clearly structure and data set and manage to easy side effects because of Hooks and Redux Thunk.
+A basic todo application does create a new task and then you can delete or remove it from the created list. Application is created basically with React and Redux. For the database, we chose Google Cloud Firestore, and also authentication method entirely works with anonymous by Firebase, Google. From the beginning of the challenge, we care about is architecture and this way we provided a clear structure and store so when about manage to easy side effects through Hooks, Styled Component and Redux Thunk.
 
 ## Demo
 
@@ -20,18 +20,7 @@ $ git clone git@github.com:<username>/todo-cs.git
 
 ### 2- Create a .env file in your root folder
 
-The `.env` file includes some important configuration settings. That's why you should create a new `.env` file in project. You can set these configurations if you need but now you can use the below config directly.
-
-```
-REACT_APP_API_KEY = AIzaSyBdjo0rdYmm4bWc3bsHsifxpxdt9N1NIaw
-REACT_APP_AUTH_DOMAIN = qooper-interview.firebaseapp.com
-REACT_APP_PROJECT_ID = qooper-interview
-REACT_APP_STORAGE_BUCKET = qooper-interview.appspot.com
-REACT_APP_MESSAGING_SENDER_ID = 647076293479
-REACT_APP_APP_ID = 1:647076293479:web:ee3f699a047029c2499dc2
-REACT_APP_TODOS_COLLECTION_NAME = todos
-REACT_APP_USERS_COLLECTION_NAME = users
-```
+The `.env` file includes some important configuration settings. That's why you should create a new `.env` file in the project. You can make a new environment file with run `mv .env.local .env` command and then edits your own configurations.
 
 ### 3- Install the dependencies and start the server
 

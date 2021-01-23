@@ -8,7 +8,7 @@ function TodoPage(props) {
   const todos = useSelector((state) => state.todos);
   React.useEffect(() => {
     dispatch(_getTodos());
-  }, [dispatch, props.user.id]);
+  }, [dispatch, props.user.userId]);
 
   const Container = styled.div`
     justify-content: space-around;
