@@ -3,7 +3,7 @@
 A basic todo application does create a new task and then you can delete or remove it from the created list. Application is created basically with React and Redux. For the database, we chose Google Cloud Firestore, and also authentication method entirely works with anonymous by Firebase, Google. From the beginning of the challenge, we care about is architecture and this way we provided a clear structure and store so when about manage to easy side effects through Hooks, Styled Component and Redux Thunk.
 
 ## Demo
-
+Anonymous entries may have been disabled due to the free Google Firebase. We recommend that you try it locally with your own Google Firebase account.
 ```
 https://todo-firebase-xi.vercel.app
 ```
@@ -15,7 +15,7 @@ https://todo-firebase-xi.vercel.app
 ### 1- Fork Repository
 
 ```sh
-$ git clone git@github.com:<username>/todo-cs.git
+$ git clone git@github.com:<username>/react-cloud-firestore.git
 ```
 
 ### 2- Create a .env file in your root folder
