@@ -5,6 +5,25 @@ import reducer from "../reducers";
 import { createMemoryHistory } from "history";
 import { Router } from "react-router-dom";
 import { render as rtlRender } from "@testing-library/react";
+/*
+    jest.mock("../utils/api.js");
+    
+    jest.mock("../utils/api.js", () => ({
+        logOut: () => jest.fn()
+    }));
+
+    logOut.mockImplementation(() => true);
+    logOut.mockReturnValueOnce(true);
+
+    const mockHistoryPush = jest.fn();
+    jest.mock('react-router-dom', () => ({
+        ...jest.requireActual('react-router-dom'),
+        useHistory: () => ({
+            push: mockHistoryPush,
+        }),
+    }));
+    expect(mockHistoryPush).toHaveBeenCalledWith('/signIn');
+*/
 const history = createMemoryHistory();
 const actions = [];
 const observerMiddleware = ({ dispatch, getState }) => (next) => async (action) => {

@@ -1,12 +1,4 @@
-import {
-  logOut,
-  signInAnonymous,
-  createTodo,
-  editTodo,
-  deleteTodo,
-  getTodos,
-  checkAuthentication,
-} from "../utils/api";
+import { logOut, signInAnonymous, createTodo, editTodo, deleteTodo, getTodos, checkAuthentication } from "../utils/api";
 import { showLoading, hideLoading } from "react-redux-loading";
 
 export const ADD_TODO = "ADD_TODO";
@@ -33,9 +25,11 @@ export function handleAuthentication() {
 export function _getTodos() {
   return async (dispatch) => {
     dispatch(showLoading());
-    const todos = await getTodos();
-    dispatch({ type: GET_TODOS, payload: [...todos] });
-    dispatch(hideLoading());
+    try {
+      const todos = await getTodos();
+      dispatch({ type: GET_TODOS, payload: [...todos] });
+      dispatch(hideLoading());
+    } catch (error) {}
   };
 }
 export function _createTodo(userId, newTodo) {
@@ -77,8 +71,10 @@ export function _signInAnonymous(userData) {
 export function _logOut() {
   return async (dispatch) => {
     dispatch(showLoading());
-    await logOut();
-    dispatch({ type: LOGOUT });
-    dispatch(hideLoading());
+    try {
+      await logOut();
+      dispatch({ type: LOGOUT });
+      dispatch(hideLoading());
+    } catch (error) {}
   };
 }
