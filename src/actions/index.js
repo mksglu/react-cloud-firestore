@@ -44,14 +44,16 @@ export function _createTodo(userId, newTodo) {
 }
 export function _editTodo(todoId, newTodo) {
   return async (dispatch, getState) => {
-    dispatch(showLoading());
-    await editTodo(todoId, newTodo);
-    const userId = getState().user.userId;
-    dispatch({
-      type: EDIT_TODO,
-      payload: { id: todoId, todo: newTodo, userId },
-    });
-    dispatch(hideLoading());
+    try {
+      dispatch(showLoading());
+      await editTodo(todoId, newTodo);
+      const userId = getState().user.userId;
+      dispatch({
+        type: EDIT_TODO,
+        payload: { id: todoId, todo: newTodo, userId },
+      });
+      dispatch(hideLoading());
+    } catch (error) {}
   };
 }
 export function _deleteTodo(todoId) {

@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { _editTodo } from "../actions";
+import { _editTodo } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
-import { useOnClickOutside } from "../hooks";
-import { EditInput } from "../components";
+import { useOnClickOutside } from "../../hooks";
+import { EditInput } from "../../components";
 
 const TodoElement = styled.span`
   background: ${(props) => (props.primary ? "palevioletred" : "white")};
@@ -37,14 +37,11 @@ const Task = ({ todoId, children }) => {
   return (
     <React.Fragment>
       {inputVisible ? (
-        <EditInput
-          onSubmit={handleSubmit}
-          inputRef={inputRef}
-          value={text}
-          onChange={handleChange}
-        ></EditInput>
+        <EditInput onSubmit={handleSubmit} inputRef={inputRef} value={text} onChange={handleChange} />
       ) : (
-        <TodoElement onClick={handleClick}>{children}</TodoElement>
+        <TodoElement data-testid="todoelement" onClick={handleClick}>
+          {children}
+        </TodoElement>
       )}
     </React.Fragment>
   );

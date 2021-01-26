@@ -13,8 +13,8 @@ const FormElement = styled.form``;
 
 const EditInputComponent = ({ onSubmit, onChange, inputRef, value }) => {
   return (
-    <FormElement onSubmit={onSubmit}>
-      <EditInputElement ref={inputRef} onChange={onChange} value={value} />;
+    <FormElement data-testid="editform" onSubmit={onSubmit}>
+      <EditInputElement data-testid="editinput" ref={inputRef} onChange={onChange} value={value} />;
     </FormElement>
   );
 };
