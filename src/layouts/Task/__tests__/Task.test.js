@@ -11,6 +11,7 @@ describe("Task", () => {
     });
     expect(queryByTestId(/todoelement/i)).toBeTruthy();
     expect(queryByTestId(/editinput/i)).toBeNull();
+    expect(getByTestId("todoelement").textContent).toEqual("Hello") 
     fireEvent.click(getByTestId("todoelement"));
     expect(queryByTestId(/editinput/i)).toBeTruthy();
     expect(queryByTestId(/todoelement/i)).toBeNull();
