@@ -9,7 +9,7 @@ import { render as rtlRender } from "@testing-library/react";
     jest.mock("../utils/api.js");
     
     jest.mock("../utils/api.js", () => ({
-        logOut: () => jest.fn()
+        logOut: () => Promise.resolve(true)
     }));
 
     logOut.mockImplementation(() => true);
@@ -54,7 +54,6 @@ function render(
   }
   const utils = {
     dispatch(action) {
-      console.log("action", action);
       return store.dispatch(action);
     },
     async getDispatchedActions() {

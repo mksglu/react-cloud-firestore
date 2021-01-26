@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { _logOut } from "../actions";
-import { Button } from "../components";
+import { _logOut } from "../../actions";
+import { Button } from "../../components";
 import { useHistory } from "react-router-dom";
 const LOGIN_URI = "/signIn"
 

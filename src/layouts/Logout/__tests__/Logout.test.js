@@ -1,8 +1,8 @@
 import React from "react";
-import { Logout } from "./";
-import { render, fireEvent, screen } from "../utils/test-utils";
-import { logOut } from "../utils/api";
-jest.mock("../utils/api.js");
+import { Logout } from "../../";
+import { render, fireEvent, screen } from "../../../utils/test-utils";
+import { logOut } from "../../../utils/api";
+jest.mock("../../../utils/api.js");
 const mockHistoryPush = jest.fn();
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
