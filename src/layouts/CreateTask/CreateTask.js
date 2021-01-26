@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { Input } from "../components";
+import { Input } from "../../components";
 import { useDispatch } from "react-redux";
-import { _createTodo } from "../actions";
+import { _createTodo } from "../../actions";
 
 const Form = styled.form``;
 const CreateTask = ({ userId }) => {
@@ -18,8 +18,8 @@ const CreateTask = ({ userId }) => {
     setTask(event.target.value);
   };
   return (
-    <Form onSubmit={handleSubmit}>
-      <Input value={task} onChange={handleChange}></Input>
+    <Form onSubmit={handleSubmit} data-testid="form">
+      <Input value={task} onChange={handleChange} data-testid="input"></Input>
     </Form>
   );
 };

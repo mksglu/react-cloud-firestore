@@ -34,10 +34,12 @@ export function _getTodos() {
 }
 export function _createTodo(userId, newTodo) {
   return async (dispatch) => {
-    dispatch(showLoading());
-    const { id } = await createTodo(userId, newTodo);
-    dispatch({ type: ADD_TODO, payload: { id, todo: newTodo } });
-    dispatch(hideLoading());
+    try {
+      dispatch(showLoading());
+      const { id } = await createTodo(userId, newTodo);
+      dispatch({ type: ADD_TODO, payload: { id, todo: newTodo } });
+      dispatch(hideLoading());
+    } catch (error) {}
   };
 }
 export function _editTodo(todoId, newTodo) {
