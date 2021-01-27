@@ -16,7 +16,7 @@ const SignIn = ({ onSubmit }) => {
       {errors.userName && <div data-testid="userNameRequired">user name is required</div>}
       <Input login register={register({ required: true })} data-testid="firstName" name="firstName" placeholder="firstname"></Input>
       {errors.firstName && <div data-testid="firstNameRequired">first name is required</div>}
-      <Input login register={register({ required: false })} name="lastName" placeholder="lastname"></Input>
+      <Input login register={register({ required: false })} data-testid="lastName" name="lastName" placeholder="lastname"></Input>
       <Button type="submit">Sign In</Button>
     </FormElement>
   );

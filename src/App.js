@@ -6,8 +6,8 @@ import PrivateRoute from "./routes/PrivateRoute";
 import PublicRoute from "./routes/PublicRoute";
 import LoadingBar from "react-redux-loading";
 
-const Todo = React.lazy(() => import("./pages/Todo"));
-const SignIn = React.lazy(() => import("./pages/SignIn"));
+const Todo = React.lazy(() => import("./pages/Todo/Todo"));
+const SignIn = React.lazy(() => import("./pages/SignIn/SignIn"));
 
 function App() {
   const dispatch = useDispatch();
