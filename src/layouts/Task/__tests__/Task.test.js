@@ -46,6 +46,19 @@ describe("Task", () => {
     await getDispatchedActions();
     expect(getState().todos[0].todo).toEqual("Hello Mert!");
   });
+  it("should be update store when onclick outside", async () => {
+    const initialState = { todos: [{ id: "todoId1", todo: "Hello" }] };
+    const { getByTestId, getState, getDispatchedActions } = render(<Task todoId="todoId1" children="Hello" />, {
+      initialState,
+    });
+    fireEvent.click(getByTestId("todoelement"));
+    fireEvent.change(getByTestId("editinput"), { target: { value: "Hello Mert!" } });
+    expect(getByTestId("editinput").value).toEqual("Hello Mert!");
+    expect(getState().todos[0].todo).toEqual("Hello");
+    fireEvent.mouseDown(document.body);
+    await getDispatchedActions();
+    expect(getState().todos[0].todo).toEqual("Hello Mert!");
+  });
   it("should not visible edit input when loading is true", async () => {
     const initialState = { loadingBar: { default: 1 }, todos: [{ id: "todoId1", todo: "Hello" }] };
     const { queryByTestId, getByTestId } = render(<Task todoId="todoId1" children="Hello" />, {
