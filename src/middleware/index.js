@@ -5,5 +5,5 @@ const getEnvironment = process.env.NODE_ENV;
 
 export default applyMiddleware(
   thunk,
-  getEnvironment === "development" && logger
+  logger
 );

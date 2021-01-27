@@ -24,18 +24,8 @@ function App() {
         <LoadingBar />
       ) : (
         <Router>
-          <PrivateRoute
-            isLogged={isLogged}
-            path="/"
-            component={() => <Todo user={getUser} />}
-            exact
-          />
-          <PublicRoute
-            isLogged={isLogged}
-            path="/signIn"
-            component={SignIn}
-            exact
-          />
+          <PrivateRoute isLogged={isLogged} path="/" component={() => <Todo user={getUser} />} exact />
+          <PublicRoute isLogged={isLogged} path="/signIn" component={SignIn} exact />
         </Router>
       )}
     </React.Suspense>

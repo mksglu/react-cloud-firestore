@@ -1,7 +1,13 @@
 {
-  "name": "cenk",
+  "name": "rgcfs",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "author": {
+    "name": "Mert Köseoğlu",
+    "email": "bm.ksglu@gmail.com",
+    "url": "https://github.com/mksglu"
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
