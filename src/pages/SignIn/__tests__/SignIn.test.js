@@ -1,9 +1,10 @@
 import React from "react";
 import { SignInPage } from "../../";
-import { render } from "../../../utils/test-utils";
+import { cleanup, render } from "../../../utils/test-utils";
 import { signInAnonymous } from "../../../utils/api";
 jest.mock("../../../utils/api.js");
 describe("SignIn Page", () => {
+  afterEach(cleanup);
   const initialState = {
     user: { isLogged: true, loading: false, userId: "userId", userName: "mksglu", firstName: "Mert", lastName: "Koseoglu" },
     todos: [{ id: "todoId", userId: "userId1", todo: "Hello" }],

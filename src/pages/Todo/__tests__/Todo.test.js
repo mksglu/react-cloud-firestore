@@ -1,8 +1,9 @@
 import React from "react";
 import { TodoPage } from "../../";
-import { render } from "../../../utils/test-utils";
+import { cleanup, render } from "../../../utils/test-utils";
 jest.mock("../../../utils/api.js");
 describe("Todo Page", () => {
+  afterEach(cleanup);
   const user = { userId: "userId", userName: "userName" };
   const initialState = {
     user: { isLogged: true, loading: false, userId: "userId", firstName: "firstName", lastName: "lastName", userName: "userName" },

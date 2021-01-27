@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react";
+import { cleanup, render, fireEvent } from "@testing-library/react";
 import { useOnClickOutside } from "../../";
 
 const ClickOutside = () => {
@@ -12,6 +12,7 @@ const ClickOutside = () => {
 };
 
 describe("<ClickOutside />", () => {
+  afterEach(cleanup);
   it("should call useOnClickOutside when clicking outside", () => {
     const { getByTestId } = render(<ClickOutside />);
     fireEvent.mouseDown(document.body);

@@ -1,7 +1,8 @@
 import * as React from "react";
-import { render, fireEvent, act } from "@testing-library/react";
+import { cleanup, render, fireEvent, act } from "@testing-library/react";
 import { SignIn } from "../../";
 describe("SignIn Layout", () => {
+  afterEach(cleanup);
   it("should call onSubmit when all inputs is filled", async () => {
     const onSubmit = jest.fn();
     const { getByTestId, queryByText } = render(<SignIn onSubmit={onSubmit} />);

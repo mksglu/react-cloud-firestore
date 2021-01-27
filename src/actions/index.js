@@ -58,10 +58,12 @@ export function _editTodo(todoId, newTodo) {
 }
 export function _deleteTodo(todoId) {
   return async (dispatch) => {
-    dispatch(showLoading());
-    await deleteTodo(todoId);
-    dispatch({ type: DELETE_TODO, payload: { todoId } });
-    dispatch(hideLoading());
+    try {
+      dispatch(showLoading());
+      await deleteTodo(todoId);
+      dispatch({ type: DELETE_TODO, payload: { todoId } });
+      dispatch(hideLoading());
+    } catch (error) {}
   };
 }
 export function _signInAnonymous(userData) {

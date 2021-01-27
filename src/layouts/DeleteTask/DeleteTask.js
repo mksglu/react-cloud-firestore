@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { _deleteTodo } from "../actions";
-import { DeleteButton } from "../components";
+import { _deleteTodo } from "../../actions";
+import { DeleteButton } from "../../components";
 
 const DeleteTask = ({ todoId }) => {
   const loading = useSelector((state) => {
