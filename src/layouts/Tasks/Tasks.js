@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Task, DeleteTask } from "../layouts";
+import { Task, DeleteTask } from "../";
 
 const TasksContainerElement = styled.div`
   display: flex;
