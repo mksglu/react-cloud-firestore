@@ -11,10 +11,10 @@ const EditInputElement = styled.input`
 `;
 const FormElement = styled.form``;
 
-const EditInputComponent = ({ onSubmit, onChange, inputRef, value }) => {
+const EditInputComponent = ({ type, onSubmit, onChange, inputRef, value }) => {
   return (
     <FormElement data-testid="editform" onSubmit={onSubmit}>
-      <EditInputElement data-testid="editinput" ref={inputRef} onChange={onChange} value={value} />;
+      <EditInputElement data-testid="editinput" type={type} ref={inputRef} onChange={onChange} value={value} />;
     </FormElement>
   );
 };
