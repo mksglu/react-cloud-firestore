@@ -5,7 +5,7 @@ A basic todo application does create a new task and then you can delete or remov
 
 For the database, we chose Google Cloud Firestore, and also authentication method entirely works with anonymous by Firebase, Google. From the beginning of the challenge, we care about is architecture and test driven development and this way we provided a clear structure and store so when about manage to easy side effects through Hooks, Styled Component, and Redux Thunk.
 
-## Demo
+## Outlook
 Anonymous entries may have been disabled due to the free Google Firebase. We recommend that you try it locally with your own Google Firebase account.
 ```
 https://todo-firebase-xi.vercel.app
