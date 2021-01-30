@@ -1,9 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { _editTodo } from "../../actions";
 import { useSelector, useDispatch } from "react-redux";
-import { useOnClickOutside } from "../../hooks";
-import { EditInput } from "../../components";
+import EditTask from "../EditTask";
+import { handleEditVisible } from "../../actions";
 
 const TodoElement = styled.span`
   background: ${(props) => (props.primary ? "palevioletred" : "white")};
@@ -12,32 +11,21 @@ const TodoElement = styled.span`
 `;
 const Task = ({ todoId, children }) => {
   const loading = useSelector((state) => state.loadingBar.default);
-  const inputRef = React.useRef(null);
-  const [inputVisible, setInputVisible] = React.useState(false);
-  const [text, setText] = React.useState(children);
-  const dispatch = useDispatch();
-  useOnClickOutside(inputRef, () => {
-    setInputVisible(false);
-    dispatch(_editTodo(todoId, text));
+  const isEdit = useSelector((state) => {
+    const getTodo = state.todos.find((todo) => todo.id === todoId);
+    return getTodo.visible;
   });
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setInputVisible(false);
-    dispatch(_editTodo(todoId, text));
-  };
+  const dispatch = useDispatch();
   const handleClick = (event) => {
     event.preventDefault();
     if (!loading) {
-      setInputVisible(true);
+      dispatch(handleEditVisible(true));
     }
-  };
-  const handleChange = (event) => {
-    setText(event.target.value);
   };
   return (
     <React.Fragment>
-      {inputVisible ? (
-        <EditInput onSubmit={handleSubmit} inputRef={inputRef} value={text} onChange={handleChange} />
+      {isEdit ? (
+        <EditTask todo={children} todoId={todoId} />
       ) : (
         <TodoElement data-testid="todoelement" onClick={handleClick}>
           {children}

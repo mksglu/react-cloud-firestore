@@ -3,6 +3,7 @@ import { showLoading, hideLoading } from "react-redux-loading";
 
 export const ADD_TODO = "ADD_TODO";
 export const EDIT_TODO = "EDIT_TODO";
+export const EDIT_TODO_VISIBLE = "EDIT_TODO_VISIBLE";
 export const DELETE_TODO = "DELETE_TODO";
 export const GET_TODOS = "GET_TODOS";
 
@@ -54,6 +55,11 @@ export function _editTodo(todoId, newTodo) {
       });
       dispatch(hideLoading());
     } catch (error) {}
+  };
+}
+export function handleEditVisible(visible) {
+  return async (dispatch /*getState*/) => {
+    dispatch({ type: EDIT_TODO_VISIBLE, payload: { visible } });
   };
 }
 export function _deleteTodo(todoId) {
