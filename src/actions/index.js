@@ -68,10 +68,12 @@ export function _deleteTodo(todoId) {
 }
 export function _signInAnonymous(userData) {
   return async (dispatch) => {
-    dispatch(showLoading());
-    const _data = await signInAnonymous(userData);
-    dispatch({ type: SIGNIN, payload: { ..._data } });
-    dispatch(hideLoading());
+    try {
+      dispatch(showLoading());
+      const _data = await signInAnonymous(userData);
+      dispatch({ type: SIGNIN, payload: { ..._data } });
+      dispatch(hideLoading());
+    } catch (error) {}
   };
 }
 export function _logOut() {
