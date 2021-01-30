@@ -12,12 +12,12 @@ export const LOGOUT = "LOGOUT";
 export function handleAuthentication() {
   return async (dispatch) => {
     dispatch(showLoading());
-    const userData = await checkAuthentication();
-    if (!userData) {
-      dispatch({ type: LOGOUT });
-      dispatch(hideLoading());
-    } else {
+    try {
+      const userData = await checkAuthentication();
       dispatch({ type: SIGNIN, payload: { ...userData } });
+      dispatch(hideLoading());
+    } catch (error) {
+      dispatch({ type: LOGOUT });
       dispatch(hideLoading());
     }
   };

@@ -29,18 +29,18 @@ _connectFirebase();
  * @returns {Promise} the number provided by the user id or false.
  */
 export function checkAuthentication() {
-  return new Promise((resolve /*reject*/) => {
+  return new Promise((resolve, reject) => {
     firebase.auth().onAuthStateChanged(async function (user) {
       if (user) {
-        const { docs } = await db
-          .collection(firebaseConfig.collectionNames.users)
-          .where(ID, "==", user.uid)
-          .get();
-        const data = { userId: docs[0].data().id, ...docs[0].data() };
-        delete data.id;
-        return resolve(data);
+        const { docs } = await db.collection(firebaseConfig.collectionNames.users).where(ID, "==", user.uid).get();
+        if (docs[0] && docs[0].data()) {
+          const data = { userId: docs[0].data().id, ...docs[0].data() };
+          delete data.id;
+          return resolve(data);
+        }
+        return reject(false);
       }
-      return resolve(false);
+      return reject(false);
     });
   });
 }
@@ -93,10 +93,7 @@ export async function signInAnonymous(userData) {
  */
 export async function getTodos() {
   const currentUserId = firebase.auth().currentUser.uid;
-  const { docs } = await db
-    .collection(firebaseConfig.collectionNames.todos)
-    .where(USER_ID, "==", currentUserId)
-    .get();
+  const { docs } = await db.collection(firebaseConfig.collectionNames.todos).where(USER_ID, "==", currentUserId).get();
   return docs.map((doc) => {
     return { id: doc.id, ...doc.data() };
   });
@@ -111,9 +108,7 @@ export async function getTodos() {
  * @returns {Object} db
  */
 export async function createTodo(userId, newTodo) {
-  return db
-    .collection(firebaseConfig.collectionNames.todos)
-    .add({ todo: newTodo, userId });
+  return db.collection(firebaseConfig.collectionNames.todos).add({ todo: newTodo, userId });
 }
 
 /**
@@ -125,10 +120,7 @@ export async function createTodo(userId, newTodo) {
  * @returns {Object} db
  */
 export async function editTodo(todoId, newTodo) {
-  return db
-    .collection(firebaseConfig.collectionNames.todos)
-    .doc(todoId)
-    .update({ todo: newTodo });
+  return db.collection(firebaseConfig.collectionNames.todos).doc(todoId).update({ todo: newTodo });
 }
 
 /**
@@ -139,10 +131,7 @@ export async function editTodo(todoId, newTodo) {
  * @returns {Object} db
  */
 export async function deleteTodo(todoId) {
-  return db
-    .collection(firebaseConfig.collectionNames.todos)
-    .doc(todoId)
-    .delete();
+  return db.collection(firebaseConfig.collectionNames.todos).doc(todoId).delete();
 }
 
 /**
@@ -153,10 +142,7 @@ export async function deleteTodo(todoId) {
  * @returns {Promise}
  */
 async function _deleteAllTodos(userId) {
-  const deleteAllTodosBelongsToUser = await db
-    .collection(firebaseConfig.collectionNames.todos)
-    .where(USER_ID, "==", userId)
-    .get();
+  const deleteAllTodosBelongsToUser = await db.collection(firebaseConfig.collectionNames.todos).where(USER_ID, "==", userId).get();
   const batch = db.batch();
   if (deleteAllTodosBelongsToUser) {
     deleteAllTodosBelongsToUser.forEach((doc) => {
@@ -175,10 +161,7 @@ async function _deleteAllTodos(userId) {
  * @returns {Promise}
  */
 async function _deleteUser(userId) {
-  const deleteUser = await db
-    .collection(firebaseConfig.collectionNames.users)
-    .where(ID, "==", userId)
-    .get();
+  const deleteUser = await db.collection(firebaseConfig.collectionNames.users).where(ID, "==", userId).get();
   const batch = db.batch();
   if (deleteUser) {
     deleteUser.forEach((doc) => {
@@ -199,12 +182,7 @@ export async function logOut() {
   const currentUser = firebase.auth().currentUser;
   const _logOutFirebase = await firebase.auth().signOut();
   if (currentUser) {
-    return Promise.all([
-      _deleteAllTodos(currentUser.uid),
-      _deleteUser(currentUser.uid),
-      currentUser.delete(),
-      _logOutFirebase,
-    ]);
+    return Promise.all([_deleteAllTodos(currentUser.uid), _deleteUser(currentUser.uid), currentUser.delete(), _logOutFirebase]);
   }
   return Promise.reject();
 }
