@@ -26,8 +26,8 @@ The flexible testable application so you want to test your application with the 
 
 | NPM | Docker |
 | --- | --- |
-| `$ npm run docker-build` | docker-compose build && docker-compose up -d |
-| `$ npm run docker-recreate` | docker-compose build --no-cache && docker-compose up -d --force-recreate |
+| $ npm run docker-build | $ docker-compose build && docker-compose up -d |
+| $ npm run docker-recreate | $ docker-compose build --no-cache && docker-compose up -d --force-recreate |
 
 ## Development
 
