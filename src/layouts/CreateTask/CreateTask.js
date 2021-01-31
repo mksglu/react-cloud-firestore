@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Input } from "../../components";
 import { useDispatch } from "react-redux";
-import { _createTodo } from "../../actions";
+import { handleCreateTodo } from "../../actions";
 
 const Form = styled.form``;
 const CreateTask = ({ userId }) => {
@@ -11,7 +11,7 @@ const CreateTask = ({ userId }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!/\S/.test(task)) return;
-    dispatch(_createTodo(userId, task));
+    dispatch(handleCreateTodo(userId, task));
     setTask("");
   };
   const handleChange = (event) => {

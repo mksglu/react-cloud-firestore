@@ -10,6 +10,9 @@ export const GET_TODOS = "GET_TODOS";
 export const SIGNIN = "SIGNIN";
 export const LOGOUT = "LOGOUT";
 
+export const TODO_ERROR = "TODO_ERROR";
+export const USER_ERROR = "USER_ERROR";
+
 export function handleAuthentication() {
   return async (dispatch) => {
     dispatch(showLoading());
@@ -23,27 +26,34 @@ export function handleAuthentication() {
     }
   };
 }
-export function _getTodos() {
+
+export function handleGetTodos() {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
       const todos = await getTodos();
       dispatch({ type: GET_TODOS, payload: [...todos] });
       dispatch(hideLoading());
-    } catch (error) {}
+    } catch (error) {
+      dispatch({ type: TODO_ERROR });
+    }
   };
 }
-export function _createTodo(userId, newTodo) {
+
+export function handleCreateTodo(userId, newTodo) {
   return async (dispatch) => {
     try {
       dispatch(showLoading());
       const { id } = await createTodo(userId, newTodo);
       dispatch({ type: ADD_TODO, payload: { id, todo: newTodo } });
       dispatch(hideLoading());
-    } catch (error) {}
+    } catch (error) {
+      dispatch({ type: TODO_ERROR });
+    }
   };
 }
-export function _editTodo(todoId, newTodo) {
+
+export function handleEditTodo(todoId, newTodo) {
   return async (dispatch, getState) => {
     try {
       dispatch(showLoading());
@@ -54,41 +64,53 @@ export function _editTodo(todoId, newTodo) {
         payload: { id: todoId, todo: newTodo, userId },
       });
       dispatch(hideLoading());
-    } catch (error) {}
+    } catch (error) {
+      dispatch({ type: TODO_ERROR });
+    }
   };
 }
+
 export function handleEditVisible(visible) {
   return async (dispatch /*getState*/) => {
     dispatch({ type: EDIT_TODO_VISIBLE, payload: { visible } });
   };
 }
-export function _deleteTodo(todoId) {
+
+export function handleDeleteTodo(todoId) {
   return async (dispatch) => {
     try {
       dispatch(showLoading());
       await deleteTodo(todoId);
       dispatch({ type: DELETE_TODO, payload: { todoId } });
       dispatch(hideLoading());
-    } catch (error) {}
+    } catch (error) {
+      dispatch({ type: TODO_ERROR });
+    }
   };
 }
-export function _signInAnonymous(userData) {
+
+export function handleSignInAnonymous(userData) {
   return async (dispatch) => {
     try {
       dispatch(showLoading());
       const _data = await signInAnonymous(userData);
       dispatch({ type: SIGNIN, payload: { ..._data } });
       dispatch(hideLoading());
-    } catch (error) {}
+    } catch (error) {
+      dispatch({ type: USER_ERROR });
+    }
   };
 }
-export function _logOut() {
+
+export function handleLogOut() {
   return async (dispatch) => {
     dispatch(showLoading());
     try {
       await logOut();
       dispatch({ type: LOGOUT });
       dispatch(hideLoading());
-    } catch (error) {}
+    } catch (error) {
+      dispatch({ type: USER_ERROR });
+    }
   };
 }

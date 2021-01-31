@@ -6,7 +6,9 @@ jest.mock("../../../utils/api.js");
 describe("CreateTask", () => {
   afterEach(cleanup);
   it("should create a new task", async () => {
-    const { getByTestId, getState, getDispatchedActions } = render(<CreateTask />, { initialState: { todos: [{ id: "todo1", todo: "Todo 1" }] } });
+    const { getByTestId, getState, getDispatchedActions } = render(<CreateTask />, {
+      initialState: { todos: [{ id: "todo1", todo: "Todo 1" }] },
+    });
     const input = getByTestId(/input/i);
     fireEvent.change(input, { target: { value: "That is new todo item!" } });
     createTodo.mockReturnValueOnce(Promise.resolve({ id: "todo2" }));
@@ -20,7 +22,9 @@ describe("CreateTask", () => {
     expect(todos).toEqual(expectedTodos);
   });
   it("should not create a new task when input is empty", async () => {
-    const { getByTestId, getState, getDispatchedActions } = render(<CreateTask />, { initialState: { todos: [{ id: "todo1", todo: "Todo 1" }] } });
+    const { getByTestId, getState, getDispatchedActions } = render(<CreateTask />, {
+      initialState: { todos: [{ id: "todo1", todo: "Todo 1" }] },
+    });
     const input = getByTestId(/input/i);
     fireEvent.change(input, { target: { value: "" } });
     createTodo.mockReturnValueOnce(Promise.resolve({ id: "todo2" }));

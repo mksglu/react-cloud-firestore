@@ -6,14 +6,26 @@ jest.mock("../../../utils/api.js");
 describe("SignIn Page", () => {
   afterEach(cleanup);
   const initialState = {
-    user: { isLogged: true, loading: false, userId: "userId", userName: "mksglu", firstName: "Mert", lastName: "Koseoglu" },
+    user: {
+      isLogged: true,
+      loading: false,
+      userId: "userId",
+      userName: "mksglu",
+      firstName: "Mert",
+      lastName: "Koseoglu",
+    },
     todos: [{ id: "todoId", userId: "userId1", todo: "Hello" }],
     loadingBar: { default: 0 },
   };
   it("SignIn page should be successfuly render", async () => {
     const { getByTestId, getState } = render(<SignInPage />, { initialState });
     signInAnonymous.mockReturnValueOnce(
-      Promise.resolve({ userId: initialState.user.userId, userName: initialState.user.userName, firstName: initialState.user.firstName, lastName: initialState.user.lastName })
+      Promise.resolve({
+        userId: initialState.user.userId,
+        userName: initialState.user.userName,
+        firstName: initialState.user.firstName,
+        lastName: initialState.user.lastName,
+      }),
     );
     expect(getByTestId("form")).toBeTruthy();
     expect(getState().user.userId).toEqual(initialState.user.userId);

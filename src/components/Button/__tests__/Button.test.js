@@ -19,7 +19,7 @@ describe("Button", () => {
     render(
       <Button logout={true} onClick={() => {}}>
         Click Me
-      </Button>
+      </Button>,
     );
     const button = screen.getByText(/click me/i);
     expect(button).toHaveStyle(`background: palevioletred; color: white;`);
@@ -28,7 +28,7 @@ describe("Button", () => {
     render(
       <Button logout={false} onClick={() => {}}>
         Click Me
-      </Button>
+      </Button>,
     );
     const button = screen.getByText(/click me/i);
     expect(button).toHaveStyle(`background: white; color: palevioletred;`);

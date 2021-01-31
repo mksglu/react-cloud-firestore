@@ -10,7 +10,9 @@ const DeleteButtonElement = styled.span`
   width: 10px;
 `;
 const DeleteButton = ({ onClick, children }) => (
-  <DeleteButtonElement data-testid="deleteButton" onClick={onClick}>{children}</DeleteButtonElement>
+  <DeleteButtonElement data-testid="deleteButton" onClick={onClick}>
+    {children}
+  </DeleteButtonElement>
 );
 
 DeleteButton.defaultProps = {

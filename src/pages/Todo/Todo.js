@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { _getTodos } from "../../actions";
+import { handleGetTodos } from "../../actions";
 import { Button } from "../../components";
 import { CreateTask, Logout, Tasks } from "../../layouts";
 import styled from "styled-components";
@@ -28,7 +28,7 @@ function TodoPage(props) {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todos);
   React.useEffect(() => {
-    dispatch(_getTodos());
+    dispatch(handleGetTodos());
   }, [dispatch, props.user.userId]);
   return (
     <ContainerElement>

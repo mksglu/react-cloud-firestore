@@ -33,18 +33,7 @@ const observerMiddleware = ({ dispatch, getState }) => (next) => async (action) 
   }
   return next(action);
 };
-function render(
-  ui,
-  {
-    initialState = {},
-    store = createStore(
-      reducer,
-      initialState,
-      applyMiddleware(observerMiddleware)
-    ),
-    ...renderOptions
-  } = {}
-) {
+function render(ui, { initialState = {}, store = createStore(reducer, initialState, applyMiddleware(observerMiddleware)), ...renderOptions } = {}) {
   function Wrapper({ children }) {
     return (
       <Router history={history}>
@@ -57,12 +46,12 @@ function render(
       return store.dispatch(action);
     },
     async getDispatchedActions() {
-        return actions;
-      },
+      return actions;
+    },
     getState() {
       return store.getState();
     },
-    store
+    store,
   };
   return {
     ...rtlRender(ui, { wrapper: Wrapper, ...renderOptions }),

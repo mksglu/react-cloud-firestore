@@ -9,4 +9,3 @@ if (getEnvironment === "development") {
 }
 
 export default applyMiddleware(...middleware);
-

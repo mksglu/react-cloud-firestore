@@ -1,8 +1,8 @@
 import React from "react";
-import { handleEditVisible,_editTodo } from "../actions";
+import { handleEditVisible, handleEditTodo } from "../../actions";
 import { useDispatch } from "react-redux";
-import { useOnClickOutside } from "../hooks";
-import { EditInput } from "../components";
+import { useOnClickOutside } from "../../hooks";
+import { EditInput } from "../../components";
 
 const EditTask = ({ todoId, todo }) => {
   const inputRef = React.useRef(null);
@@ -10,12 +10,12 @@ const EditTask = ({ todoId, todo }) => {
   const dispatch = useDispatch();
   useOnClickOutside(inputRef, () => {
     dispatch(handleEditVisible(false));
-    dispatch(_editTodo(todoId, newTask));
+    dispatch(handleEditTodo(todoId, newTask));
   });
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(handleEditVisible(false));
-    dispatch(_editTodo(todoId, newTask));
+    dispatch(handleEditTodo(todoId, newTask));
   };
   const handleChange = (event) => {
     setNewTask(event.target.value);

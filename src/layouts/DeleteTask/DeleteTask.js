@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { _deleteTodo } from "../../actions";
+import { handleDeleteTodo } from "../../actions";
 import { DeleteButton } from "../../components";
 
 const DeleteTask = ({ todoId }) => {
@@ -11,7 +11,7 @@ const DeleteTask = ({ todoId }) => {
   const handleClick = (event) => {
     event.preventDefault();
     if (!loading) {
-      dispatch(_deleteTodo(todoId));
+      dispatch(handleDeleteTodo(todoId));
     }
   };
   return <DeleteButton onClick={handleClick} />;

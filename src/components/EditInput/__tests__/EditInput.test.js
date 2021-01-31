@@ -11,7 +11,9 @@ describe("EditInput", () => {
     const handleChange = jest.fn();
     const handleSubmit = jest.fn();
     const { getByTestId } = render(<EditInput onSubmit={handleSubmit} onChange={handleChange} />);
-    fireEvent.change(getByTestId("editinput"), { target: { value: "The task is changed." } });
+    fireEvent.change(getByTestId("editinput"), {
+      target: { value: "The task is changed." },
+    });
     expect(handleChange).toHaveBeenCalled();
     fireEvent.submit(getByTestId("editform"));
     expect(handleSubmit).toHaveBeenCalled();

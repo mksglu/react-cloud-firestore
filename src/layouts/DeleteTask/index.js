@@ -1,1 +1,1 @@
-export { default as DeleteTask } from './DeleteTask';
+export { default as DeleteTask } from "./DeleteTask";

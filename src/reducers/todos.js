@@ -5,7 +5,10 @@ export default function todos(state = initialState, action) {
     case ADD_TODO:
       return [...state, action.payload];
     case EDIT_TODO_VISIBLE:
-      return state.map((task) => ({ ...task, visible: action.payload.visible }));
+      return state.map((task) => ({
+        ...task,
+        visible: action.payload.visible,
+      }));
     case EDIT_TODO:
       return state.map((task) => (task.id === action.payload.id ? { ...task, todo: action.payload.todo } : task));
     case DELETE_TODO:
